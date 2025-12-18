@@ -1,117 +1,146 @@
-print("Hola, benvingut a Motorbot! Un Bot de conversa preparat per trobar el teu cotxe ideal!")
-nom = input("Com et dius? ")
-nom = nom. split(" ")
-nom = nom[-1]
-print("Hola, " + nom + "! Encantat de coneixer-te.")
+# -*- coding: utf-8 -*-
+"""
+Chatbot 'Motorbot' per ajudar a trobar el cotxe ideal.
+@author: David Villar Morales
+"""
 
-print("Pots fer-me preguntes com 'Com et dius?', 'Quins son els combustibles mes rendibles?', 'Com se quin es el cotxe ideal per a mi?' o 'Adeu' per finalitzar la conversa.")
-print("També pots dir-me 'vull que m'ajudis a trobar el meu cotxe' per començar la recomanació personalitzada.")
-
-while True:
-    entrada = input("Tu: ").lower().strip()
-
-    if "com et dius" in entrada or "qui ets" in entrada:
-        print("Em dic Motorbot! Et puc ajudar a trobar el teu proper vehicle ideal.")
-
-    elif "combustibles mes rendibles" in entrada or "combustibles més rendibles" in entrada:
-        print("GLP o gas: És el combustible més barat i rendible per a la majoria de conductors.")
-        print("Electricitat: Té el cost per quilòmetre més baix, sobretot si carregues a casa.")
-        print("Dièsel: Només surt a compte si fas molts quilòmetres, sobretot per autopista.")
-        print("Gasolina: És el menys rendible, però els cotxes solen ser més barats de comprar.")
-
-    elif "cotxe ideal" in entrada or "quin cotxe" in entrada:
-        print("Per saber quin cotxe és per a tu, pensa en l’ús que en faràs, els quilòmetres anuals i el teu pressupost.")
-        print("Si t’agrada conduir-lo i s’adapta al teu dia a dia, segurament és el teu cotxe ideal.")
-
-    elif "vull que m'ajudis a trobar el meu cotxe" in entrada or "vui que m'ajudis a trobar el meu cotxe" in entrada or "ajudar-me a trobar un cotxe" in entrada:
-        print("Perfecte! Comencem la cerca del teu cotxe ideal, " + nom + ".")
+########## FUNCIONS DEL XATBOT ################################################
 
 
-        pressupost = input("Quin es el teu pressupost (€)? ")
-        us = input("Quin us li donaries al cotxe (circuit / per anar del punt A al B / una mica de cada)? ").lower()
-        pref = input("Que prefereixes: cotxes Japonesos qeu son conegusta per la seva fiabilitat, cotxes Italians que son coneguts pel seu disseny o Alemanys coneguts pel se gran rendiment y esportivitat? ").lower()
+def salutacio():
+    """Demana el nom a l’usuari, el saluda i retorna el nom."""
+    print("Hola, benvingut al Motorbot! El bot que t’ajuda a trobar el teu cotxe ideal!")
+    nom = input("Com et dius? ").strip()
+    
+    # Agafem l’últim nom si l’usuari escriu nom i cognoms
+    nom = nom.split(" ")[-1]
+    
+    print(f"Encantat de coneixe't, {nom}!")
+    return nom
 
-        p = int(pressupost)
 
-        if p < 12000:
-            print("Amb un pressupost de", p, "euros et recomano mirar cotxes de segona ma.")
-            print("Per exemple:")
-            print("- Toyota Yaris o Honda Jazz (japonesos)")
-            print("- Fiat Panda o Punto (italians)")
-            print("- Volkswagen Polo o Opel Corsa (alemanys)")
+def instruccions():
+    """Mostra les instruccions bàsiques per utilitzar el xatbot."""
+    print("""
+Pots fer-me preguntes com:
+- Com et dius?
+- Quins són els combustibles més rendibles?
+- Com sé quin és el cotxe ideal per a mi?
 
-        elif p < 25000:
-            print("Amb un pressupost mitja-baix pots trobar bons cotxes nous o de segona mà.")
-            if "jap" in pref:
-                if "circuit" in us:
-                    print("Et recomano el Mazda MX-5, petit i molt divertit de conduir.")
-                elif "punt" in us:
-                    print("Et recomano el Toyota Yaris Hybrid, molt eficient per ciutat.")
-                else:
-                    print("Et recomano el Honda Civic, equilibrat, fiable y amb capaccitats de millora asequibles.")
-            elif "ital" in pref:
-                if "circuit" in us:
-                    print("Et recomano l'Alfa Romeo Mito, amb estil i caràcter.")
-                elif "punt" in us:
-                    print("Et recomano el Fiat 500, petit i pràctic per ciutat.")
-                else:
-                    print("Et recomano el Fiat Tipo, un cotxe senzill i còmode.")
-            elif "alem" in pref:
-                if "circuit" in us:
-                    print("Et recomano el Volkswagen Polo GTI, esportiu pero equilibrat en el seu rendiment.")
-                elif "punt" in us:
-                    print("Et recomano el Volkswagen Golf, molt equilibrat amb una gran capacitat de modificació.")
-                else:
-                    print("Et recomano el BMW serie 1, pràctic i ben fet. Que amb unes petites modificacions pot ser un gran cotxe")
-            else:
-                print("Et recomano un Kia Ceed, bon rendiment i preu raonable.")
+També pots dir-me:
+- 'Vull que m'ajudis a trobar el meu cotxe' → per començar la recomanació personalitzada.
 
-        elif p < 50000:
-            print("Amb aquest pressupost pots trobar cotxes de gama mitjana-alta.")
-            if "jap" in pref:
-                if "circuit" in us:
-                    print("Et recomano el Toyota GR86, esportiu i fiable.")
-                elif "punt" in us:
-                    print("Et recomano el Lexus UX 250h, còmode i eficient.")
-                else:
-                    print("Et recomano el Mazda CX-5, perfecte per tot tipus d'us.")
-            elif "ital" in pref:
-                if "circuit" in us:
-                    print("Et recomano l'Alfa Romeo Giulia, molt bonic i potent.")
-                elif "punt" in us:
-                    print("Et recomano el Fiat 500X, bon SUV petit per ciutat i carrers estrets.")
-                else:
-                    print("Et recomano l'Alfa Romeo Tonale, modern i polivalent, ideal per a molts publics.")
-            elif "alem" in pref:
-                if "circuit" in us:
-                    print("Et recomano el BMW Serie 2, bastant esportiu i ben fet.")
-                elif "punt" in us:
-                    print("Et recomano el Volkswagen Passat, còmode i segur, ideal per a tota la familia.")
-                else:
-                    print("Et recomano el Audi Q3, tecnologic i espaiós per dins.")
-            else:
-                print("Et recomano un Hyundai Tucson, molt complet i fiable.")
+I quan vulguis marxar pots dir:
+- Adeu
+""")
 
+
+def combustibles():
+    """Explica quins són els combustibles més rendibles."""
+    print("GLP o gas → És el combustible més barat i rendible.")
+    print("Electricitat → Cost per km molt baix, sobretot carregant a casa.")
+    print("Dièsel → Rendible si fas molts km i per autopista.")
+    print("Gasolina → Menys rendible però cotxes més assequibles.")
+
+
+def cotxe_ideal():
+    """Dona consells generals per triar un cotxe ideal."""
+    print("Pensa en l’ús del cotxe, quilòmetres anuals i pressupost.")
+    print("Si s’adapta al teu dia a dia i t’agrada conduir-lo, és el teu cotxe ideal.")
+
+
+def recomanacio_pressupost(pressupost, pref):
+    """Genera recomanacions segons pressupost i preferències."""
+    if pressupost < 12000:
+        return [
+            "Amb menys de 12.000€ et recomano cotxes de segona mà:",
+            "- Toyota Yaris",
+            "- Fiat Panda",
+            "- Volkswagen Polo"
+        ]
+
+    elif pressupost < 25000:
+        msg = ["Amb aquest pressupost pots optar per bons cotxes nous o semi-nous."]
+        if "jap" in pref:
+            msg.append("Et recomano Honda Civic o Toyota Yaris Hybrid.")
+        elif "ital" in pref:
+            msg.append("Et recomano Fiat 500 o Alfa Romeo Mito.")
+        elif "alem" in pref:
+            msg.append("Et recomano Volkswagen Golf o BMW Serie 1.")
         else:
-            print("Amb un pressupost de", p, "euros pots permetre't cotxes d'alta gamma.")
-            if "circuit" in us:
-                print("- Nissan GT-R (japones)")
-                print("- Ferrari Roma (italia)")
-                print("- Porsche 911 Turbo S (alemany)")
-            elif "punt" in us:
-                print("- Lexus ES 300h (japones)")
-                print("- Maserati Ghibli (italia)")
-                print("- Mercedes Classe E (alemany)")
-            else:
-                print("- Toyota Supra (japones)")
-                print("- Alfa Romeo Stelvio (italia)")
-                print("- BMW X5 (alemany)")
+            msg.append("Et recomano Kia Ceed, molt equilibrat.")
+        return msg
 
-        print("Gracies per parlar amb mi,", nom)
-
-    elif "adeu" in entrada:
-        print("Adeu", nom, ". Espero haver-te ajudat. Que tinguis un bon dia.")
-        break
+    elif pressupost < 50000:
+        msg = ["Pressupost suficient per cotxes de gamma mitjana-alta."]
+        if "jap" in pref:
+            msg.append("Et recomano Toyota GR86 o Mazda CX-5.")
+        elif "ital" in pref:
+            msg.append("Et recomano Alfa Romeo Giulia o Fiat 500X.")
+        elif "alem" in pref:
+            msg.append("Et recomano BMW Serie 2 o Audi Q3.")
+        else:
+            msg.append("Et recomano Hyundai Tucson, complet i fiable.")
+        return msg
 
     else:
-        print("Ho sento, no entenc aquesta pregunta. Prova amb una altra.")
+        return [
+            f"Amb {pressupost}€ tens accés a gamma alta:",
+            "- Nissan GT-R",
+            "- Ferrari Roma",
+            "- Porsche 911"
+        ]
+
+
+def recomanacio_personal(nom):
+    """Demana dades personals i recomana els millors cotxes."""
+    print(f"Perfecte {nom}, comencem la teva recomanació personalitzada!")
+
+    pressupost = int(input("Quin és el teu pressupost (€)? "))
+    us = input("Quin ús faràs del cotxe? (Circuit / A-B / Mixt): ").lower()
+    pref = input("Quina procedència prefereixes? (Japonesos / Italians / Alemanys): ").lower()
+
+    recom = recomanacio_pressupost(pressupost, pref)
+
+    for r in recom:
+        print(r)
+
+    print(f"Gràcies per utilitzar el servei, {nom}!")
+
+
+########## FUNCIÓ PRINCIPAL ###################################################
+
+
+def iniciar_chatbot():
+    """Funció principal que gestiona tota la conversa del xatbot."""
+    nom = salutacio()     # Saludem l’usuari
+    instruccions()        # Expliquem com funciona
+
+    while True:
+        entrada = input("Tu: ").lower().strip()
+
+        # Gestió d’accions segons l’entrada
+        if "com et dius" in entrada or "qui ets" in entrada:
+            print("Sóc el Motorbot! El teu assistent per trobar cotxes.")
+        
+        elif "combustibles" in entrada:
+            combustibles()
+        
+        elif "cotxe ideal" in entrada:
+            cotxe_ideal()
+        
+        elif "ajudis" in entrada or "ajudar" in entrada or ("trobar" in entrada and "cotxe" in entrada):
+            recomanacio_personal(nom)
+        
+        elif "adeu" in entrada:
+            print(f"Adeu {nom}, gràcies per utilitzar el Motorbot!")
+            break
+        
+        else:
+            print("No he entès el que has dit. Pots repetir-ho o provar amb una altra pregunta.")
+
+
+########## PUNT D'ENTRADA DEL PROGRAMA ########################################
+
+if __name__ == "__main__":
+    iniciar_chatbot()     # El programa comença aquí
